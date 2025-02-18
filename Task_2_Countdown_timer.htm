@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Counter</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: lightgray;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background-color: green;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px black;
+        }
+
+        .number {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px 15px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .start {
+            background-color: blue;
+        }
+
+        .pause {
+            background-color: orange;
+        }
+
+        .stop {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <div class="number" id="counter">0</div>
+        <button class="start" onclick="startCount()">Start</button>
+        <button class="pause" onclick="pauseCount()">Pause</button>
+        <button class="stop" onclick="stopCount()">Stop</button>
+    </div>
+
+    <script>
+        let count = 0;
+        let counting;
+
+        function startCount() {
+            if (counting) return; 
+            counting = setInterval(function() {
+                if (count < 10) {
+                    count++;
+                    document.getElementById("counter").innerText = count;
+                } else {
+                    clearInterval(counting);
+                }
+            }, 1000);
+        }
+
+        function pauseCount() {
+            clearInterval(counting);
+            counting = null;
+        }
+
+        function stopCount() {
+            clearInterval(counting);
+            count = 0;
+            document.getElementById("counter").innerText = count;
+            counting = null;
+        }
+    </script>
+
+</body>
+</html>
