@@ -1,0 +1,52 @@
+.dashboard-container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f4f4f4;
+    min-height: 100vh;
+  }
+  
+  .navbar {
+    background: #007bff;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .dropdown select {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .change-password, .logout-btn {
+    background: #ff4757;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .change-password {
+    background: #ffa502;
+  }
+  
+  .logout-btn:hover, .change-password:hover {
+    opacity: 0.8;
+  }
+  
+  .welcome-text {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
