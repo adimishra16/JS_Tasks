@@ -14,6 +14,8 @@ import TodoList from "./Components/Widgets/TodoList";
 import TodoListFunction from "./Components/Widgets/ToDoFunction";
 import TodoListClass from "./Components/Widgets/ToDoClass";
 import ManageRecord from "./Components/Crud/ManageRecord";
+import ViewProduct from "./Components/API_CALL/ViewProduct";
+import Movies from "./Components/API_CALL/Movies";
 
 const App = () => {
   return (
@@ -34,6 +36,8 @@ const App = () => {
         <Route path="/TodoListFunction" element={<TodoListFunction/>}/>
         <Route path="/TodoListClass" element={<TodoListClass/>}/>
         <Route path="/ManageRecord" element={<ManageRecord/>}/> 
+        <Route path="/viewProduct" element={<ViewProduct/>}/> 
+        <Route path="/Movies" element={<Movies/>}/> 
       </Routes>
     </Router>
   );
