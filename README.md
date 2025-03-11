@@ -1,6 +1,6 @@
 🚀 **Welcome to React App** 🚀
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created with npx create-next-app@latest.
 
 📌 **Project Features:**
 - 🛠 **Widgets:** Calculator, Stopwatch, To-do List
