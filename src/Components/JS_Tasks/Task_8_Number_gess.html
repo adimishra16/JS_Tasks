@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number-Guess</title>
+    <style>
+        .container {
+            width: 500px;
+            padding: 20px;
+            margin-left: 450px;
+            margin-top: 100px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2),
+                0px -4px 8px rgba(0, 0, 0, 0.2),
+                4px 4px 8px rgba(0, 0, 0, 0.2),
+                -4px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input {
+            width: 50%;
+            height: 25px;
+            background-color: beige;
+            color: black;
+            border-radius: 10px;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        button {
+            background-color: green;
+            border: 1px solid white;
+            outline: 1px solid black;
+            border-radius: 10px;
+            width: 35%;
+            height: 35px;
+            color: white;
+            margin-left: 160px;
+        }
+
+        p {
+            text-align: center;
+            font-weight: 800;
+        }
+    </style>
+    <script>
+        const number = Math.floor(Math.random() * 100) + 1;
+        let count = 0;
+
+        function NumberGuss() {
+            let user_num = document.getElementById('guess').value;
+            user_num = parseInt(user_num);
+
+            if (isNaN(user_num)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            if (user_num > 100 || user_num <= 0) {
+                alert("Enter the number between 1 and 100.");
+                return;
+            } else if (user_num === "") {
+                alert("Enter the value.");
+                return;
+            }
+
+            let win = document.getElementById("result");
+
+            if (user_num > number) {
+                win.innerHTML = "Your guess is too high, try again!";
+                count++;
+                win.style.color = "red";
+            } else if (user_num < number) {
+                win.innerHTML = "Your guess is too low, try again!";
+                count++;
+                win.style.color = "#EFB036";
+            } else if (user_num === number) {
+                win.innerHTML = "Correct! Congratulations, you win!";
+                win.style.color = "green";
+            }
+
+            let res = document.getElementById("cnt");
+            res.innerHTML = `Attempts: ${count}`;
+
+            if (count === 10) {
+                res.innerHTML = "😔 You lost the game!";
+                res.style.color = "red";
+                setTimeout(function () {
+                    window.location.reload(); 
+                }, 1000);
+                return;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Guess the Number between 1 and 100:</h1>
+        <input type="text" id="guess" />
+        <button type="button" onclick="NumberGuss()">Guess the number</button>
+        <p id="result"></p>
+        <p id="cnt"></p>
+    </div>
+</body>
+
+</html>

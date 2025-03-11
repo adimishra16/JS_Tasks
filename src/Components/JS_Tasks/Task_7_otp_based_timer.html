@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .otp-container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 280px;
+        }
+
+        .otp-container h2 {
+            margin-bottom: 10px;
+        }
+
+        .otp-container p {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .otp-container button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 80%;
+            font-size: 16px;
+        }
+
+        .otp-container button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+
+        .timer-message {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="otp-container">
+        <h2>OTP Generator</h2>
+        <p>Click the button to generate a one-time password (OTP) and wait for it to expire after 30 seconds.</p>
+
+        <p id="otp-display"></p>
+
+        <button id="generate-otp-btn" onclick="generateOTP()">Generate OTP</button>
+
+        <div id="timer-message" class="timer-message" style="display: none;"></div>
+    </div>
+
+    <script>
+        let otpTimer; 
+        let countdownTime = 30; 
+
+        function generateOTP() {
+            let otp = Math.floor(100000 + Math.random() * 900000);
+
+            document.getElementById("otp-display").innerText = `Your OTP: ${otp}`;
+
+            document.getElementById("generate-otp-btn").disabled = true;
+
+            document.getElementById("timer-message").style.display = "inline";
+
+            startTimer();
+        }
+
+        function startTimer() {
+            otpTimer = setInterval(function () {
+                countdownTime--; 
+
+                document.getElementById("timer-message").innerText = `Wait for ${countdownTime} seconds`;
+
+                if (countdownTime <= 0) {
+                    clearInterval(otpTimer);
+                    document.getElementById("generate-otp-btn").disabled = false; 
+                    document.getElementById("timer-message").style.display = "none";
+                    countdownTime = 30; 
+                }
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
