@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const ViewProduct = () => {
     const [products, setProducts] = useState([]);
@@ -21,90 +22,57 @@ const ViewProduct = () => {
     }, []);
 
     return (
-        <div className="container mt-4">
-            {/* Header Section */}
-            <div className="d-flex justify-content-between align-items-center mb-3">
-                <h2 className="text-primary">Product List</h2>
-                <Link to="/" className="btn btn-outline-dark">🏠 Home</Link>
+        <div className="container mt-5">
+            <div className="d-flex justify-content-between align-items-center mb-4">
+                <h2 className="text-primary fw-bold">🛍️ Explore Our Products</h2>
+                <Link to="/" className="btn btn-dark rounded-pill px-4">🏠 Home</Link>
             </div>
 
-            {/* Loading & Error Messages */}
             {loading && (
                 <div className="text-center my-5">
                     <div className="spinner-border text-primary" role="status"></div>
-                    <h4 className="mt-3">Loading products...</h4>
+                    <h4 className="mt-3 text-muted">Fetching products...</h4>
                 </div>
             )}
             {error && <div className="alert alert-danger text-center">{error}</div>}
 
-            {/* Product Table */}
             {!loading && !error && (
-                <div className="table-responsive">
-                    <table className="table table-bordered table-hover shadow-sm">
-                        <thead className="table-dark text-center">
-                            <tr>
-                                <th>#</th>
-                                <th className="text-nowrap">ID</th>
-                                <th>Title</th>
-                                <th>Slug</th>
-                                <th>Price ($)</th>
-                                <th>Description</th>
-                                <th>Category</th>
-                                <th>Images</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {products.map((product, index) => (
-                                <tr key={product.id} className="align-middle text-center">
-                                    <th scope="row">{index + 1}</th>
-                                    <td className="text-nowrap">{product.id}</td>
-                                    <td className="fw-bold text-primary">{product.title}</td>
-                                    <td>{product.slug}</td>
-                                    <td className="fw-bold text-success">${product.price.toFixed(2)}</td>
+                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    {products.map((product) => (
+                        <div key={product.id} className="col">
+                            <div className="card h-100 border-0 shadow-sm rounded overflow-hidden">
+                                <div className="position-relative">
+                                    <img 
+                                        src={product.images[0]} 
+                                        alt={product.title} 
+                                        className="card-img-top"
+                                        style={{ height: "250px", objectFit: "cover" }}
+                                    />
+                                    <span className="badge bg-warning text-dark position-absolute top-0 start-0 m-2 px-3 py-1 rounded-pill">
+                                        {product.category.name}
+                                    </span>
+                                </div>
 
-                                    {/* Description with Tooltip */}
-                                    <td className="text-start" style={{ maxWidth: "250px" }}>
-                                        <span className="d-inline-block text-truncate" style={{ maxWidth: "200px" }}
-                                              title={product.description}>
-                                            {product.description}
-                                        </span>
-                                    </td>
+                                <div className="card-body">
+                                    <h5 className="card-title text-primary fw-bold">{product.title}</h5>
+                                    <h6 className="text-success fw-bold fs-5">${product.price.toFixed(2)}</h6>
 
-                                    {/* Category Info */}
-                                    <td className="text-start">
-                                        <div className="border p-2 bg-light rounded">
-                                            <strong>{product.category.name}</strong>
-                                            <br />
-                                            <img src={product.category.image} 
-                                                 alt="Category" 
-                                                 className="img-fluid rounded shadow-sm" 
-                                                 width="50" />
-                                        </div>
-                                    </td>
+                                    <p className="card-text text-muted small text-truncate" title={product.description}>
+                                        {product.description}
+                                    </p>
+                                </div>
 
-                                    {/* Product Images */}
-                                    <td>
-                                        <div className="d-flex flex-wrap justify-content-center">
-                                            {product.images.map((img, i) => (
-                                                <img key={i} src={img} 
-                                                     alt="Product" 
-                                                     className="img-thumbnail mx-1 border shadow-sm"
-                                                     width="50" height="50" />
-                                            ))}
-                                        </div>
-                                    </td>
-
-                                    {/* View Details Button */}
-                                    <td>
-                                        <Link to={`/product/${product.id}`} className="btn btn-sm btn-outline-primary">
-                                            View Details
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                                <div className="card-footer bg-white border-0 d-flex justify-content-between p-3">
+                                    <Link to={`/product/${product.id}`} className="btn btn-outline-primary btn-sm fw-bold">
+                                        🔍 View Details
+                                    </Link>
+                                    <button className="btn btn-success btn-sm fw-bold text-white">
+                                        🛒 Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>

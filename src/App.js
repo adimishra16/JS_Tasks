@@ -16,9 +16,19 @@ import TodoListClass from "./Components/Widgets/ToDoClass";
 import ManageRecord from "./Components/Crud/ManageRecord";
 import ViewProduct from "./Components/API_CALL/ViewProduct";
 import Movies from "./Components/API_CALL/Movies";
+import Crudapi from "./Components/API_CALL/CrudApi";
+import ViewUser from "./Components/API_CALL/ViewUser";
+import ProductCard from "./Components/API_CALL/ProductCard";
+import Dummyjson from "./Components/API_CALL/DummyJson";
+import User from "./Components/API_CALL/User";
+import StoreApi from "./Components/API_CALL/StoreApi";
+import Details from "./Components/API_CALL/Details";
+import { ThemeProvider } from "./Components/ThemeContext";
+
 
 const App = () => {
   return (
+    <ThemeProvider>
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
@@ -38,8 +48,16 @@ const App = () => {
         <Route path="/ManageRecord" element={<ManageRecord/>}/> 
         <Route path="/viewProduct" element={<ViewProduct/>}/> 
         <Route path="/Movies" element={<Movies/>}/> 
+        <Route path="/Crudapi" element={<Crudapi/>}/> 
+        <Route path="/ViewUser" element={<ViewUser/>}/> 
+        <Route path="/ProductCard" element={<ProductCard/>}/> 
+        <Route path="/Dummyjson" element={<Dummyjson/>}/> 
+        <Route path="/User" element={<User/>}/> 
+        <Route path="/StoreApi" element={<StoreApi/>}/> 
+        <Route path="/Details" element={<Details/>}/> 
       </Routes>
     </Router>
+    </ThemeProvider>
   );
 };
 

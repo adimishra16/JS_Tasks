@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const APICall4 = () =>{
+const User = () =>{
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -23,14 +23,12 @@ const APICall4 = () =>{
   
     return (
       <div className="container mt-5">
-        {/* Home Button */}
         <div className="mb-3">
           <Link to="/" className="btn btn-secondary">
             Home
           </Link>
         </div>
   
-        {/* Loading & Error Handling */}
         {loading && <h3 className="text-center">Loading...</h3>}
         {error && <h4 className="text-danger text-center">{error}</h4>}
   
@@ -76,4 +74,4 @@ const APICall4 = () =>{
 
 }
 
-export default APICall4;
+export default User;

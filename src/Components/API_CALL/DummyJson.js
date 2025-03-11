@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const APICall5 = () => {
+const Dummyjson = () => {
 
     const [quotes, setQuotes] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -26,7 +26,6 @@ const APICall5 = () => {
     return (
         <div className="container mt-4">
 
-            {/* Home Button */}
             <div className="mb-3">
                 <Link to="/" className="btn btn-secondary">
                     Home
@@ -63,4 +62,4 @@ const APICall5 = () => {
     );
 };
 
-export default APICall5;
+export default Dummyjson;
